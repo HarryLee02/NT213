@@ -1,0 +1,84 @@
+{% extends "template/template.twig" %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="/css/register.css">
+{% endblock %}
+
+{% block content %}
+    {% if session.message == 'register_error' %}
+        <div class="alert alert-error alert-dismissible fade show" role="alert">
+            Register failed! Please try again.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% set _ = app.session.remove('register_error') %}
+    {% endif %}
+        <div class="container">
+            <h1>Registation</h1>
+            <div class="content">
+                <form action="/register" method="POST">
+                    <div class="user-details">
+                        <div class="input-box">
+                            <span class="details">Email</span>
+                            <input type="email" name="email" placeholder="Enter your email" required> 
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Username</span>
+                            <input type="text" name="username"  placeholder="Enter your Username" required> 
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Password</span>
+                            <input type="password" name="password" placeholder="Enter your password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$" 
+                            title="At least eight characters, one letter, one number and one special character" required> 
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Confirm password</span>
+                            <input type="password" placeholder="Re-enter your password" required> 
+                        </div>
+
+                    </div>
+                    <div class="checbox">
+                        <input type="checkbox" id="fillings" name="fillings"  required>
+                        <label for="fillings" style="font-style: italic;padding-top: 15px; font-size:20px;">Are you sure with theses fillings?</label>
+                    </div>
+                    <div class="button">
+                        <input type="submit" value="Register" name="register">
+                    </div>
+                </form>
+            </div>
+        </div>
+{% endblock %}
+{% block footer %}
+{% endblock %}
+
+{% block script %}
+    {{ parent()}}
+    document.addEventListener('DOMContentLoaded', function () {
+        const hamburgerIcon = document.querySelector('.hamburger');
+        const navLink = document.querySelector('.nav-link');
+        const navItems = document.querySelectorAll('.nav-link li a');
+        const loginBtn = document.querySelector('.login-btn');
+
+        hamburgerIcon.addEventListener('click', function () {
+            navLink.classList.toggle('show');
+            if (navLink.classList.contains('show')) {
+                navItems.forEach(item => item.style.display = 'block');
+                loginBtn.style.display = 'block';
+            } else {
+                navItems.forEach(item => item.style.display = 'none');
+                loginBtn.style.display = 'none';
+            }
+        });
+
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 400) {
+                navItems.forEach(item => item.style.display = 'block');
+                loginBtn.style.display = 'block';
+            } else {
+                navItems.forEach(item => item.style.display = 'none');
+                loginBtn.style.display = 'none';
+            }
+        });
+    });
+{% endblock %}

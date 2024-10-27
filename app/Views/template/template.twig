@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block stylesheet %}
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    {% endblock %}
+    {% include './template/header.twig' %}
+
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+    {% include './template/nav.twig' %}
+    {% block content %} {% endblock %}
+</body>
+<footer>
+    {% block footer %}
+    <div class="profile-photo">
+        <img src="/images/OIP.jpg" class="rounded-circle img-fluid" alt="1">
+    </div>
+    &copy; 2024 HarryLee. All rights reserved.
+    {% endblock %}
+</footer>
+<script>
+{% block script %}
+    // Brandtext
+    document.addEventListener('DOMContentLoaded',function AppearOnce()
+    {
+        const brandtext = "ChessMate";
+        const brandElement = document.getElementById('brand-text');
+        function type(index)
+        {
+            brandElement.textContent=brandtext.slice(0,index);
+            if (index <= brandtext.length)
+            setTimeout(() => type(index+1),500);
+            else
+                {
+                    setTimeout(() =>
+                        {
+                            document.removeEventListener('DOMContentLoaded',AppearOnce);
+                            brandElement.textContent = brandtext;
+                        },1000);
+                }
+        }
+        type(0);
+    });
+{% endblock %}
+ </script>
+</html>

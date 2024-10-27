@@ -1,0 +1,93 @@
+{% extends "template/template.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+{% endblock %}
+
+{% block content %}
+    {% if session.message == 'login_success' %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Login successfully!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% set _ = app.session.remove('login_success') %}
+    {% endif %}
+    <div class="mainbody">
+        <!--Slide 1-->
+        <div class="container-fluid container1">
+            <div class="row">
+                <div class="col-md-6" style="padding-top: 100px;">
+                    <h1 style="color:black; font-weight: bold;font-size: xxx-large;"> Homework website </h1>
+                    
+                    <div class="para1" style="font-size: 20px;">
+                        <p>A MVC-pattern website using PHP,</p>
+                        <p>built by HarryLee in <a style="font-weight: bold;color: black;">1 week.</a> </p>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <!--Slide 2-->
+        <div class="bd-example m-0 border-0">
+            <div id="Interval" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="5000">
+                        <img src="/images/1.jpg" class="d-block w-100" alt="Hình ảnh minh họa">
+                    </div>
+    
+                    <div class="carousel-item " data-bs-interval="5000">
+                        <img src="/images/2.jpg " class="d-block w-100" alt="Hình ảnh minh họa">
+                    </div>
+                    
+                    <div class="carousel-item " data-bs-interval="5000">
+                        <img src="/images/3.jpg " class="d-block w-100" alt="Hình ảnh minh họa">
+                    </div>
+    
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#Interval" data-bs-slide="prev">
+                    <span class="visually-hidden">Prev</span>
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#Interval" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+        {{ parent() }}
+{% endblock %}
+
+{% block script %}
+    {{ parent()}}
+    document.addEventListener('DOMContentLoaded', function () {
+        const hamburgerIcon = document.querySelector('.hamburger');
+        const navLink = document.querySelector('.nav-link');
+        const navItems = document.querySelectorAll('.nav-link li a');
+        const loginBtn = document.querySelector('.login-btn');
+
+        hamburgerIcon.addEventListener('click', function () {
+            navLink.classList.toggle('show');
+            if (navLink.classList.contains('show')) {
+                navItems.forEach(item => item.style.display = 'block');
+                loginBtn.style.display = 'block';
+            } else {
+                navItems.forEach(item => item.style.display = 'none');
+                loginBtn.style.display = 'none';
+            }
+        });
+
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 400) {
+                navItems.forEach(item => item.style.display = 'block');
+                loginBtn.style.display = 'block';
+            } else {
+                navItems.forEach(item => item.style.display = 'none');
+                loginBtn.style.display = 'none';
+            }
+        });
+    });
+{% endblock %}

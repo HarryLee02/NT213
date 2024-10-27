@@ -1,0 +1,150 @@
+{% extends "template/template.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="/css/posts.css">
+{% endblock %}
+
+{% block content %}
+    <div class="mainbody">
+        <!--Search bar-->
+        <div class="wrap">
+            <form action="/posts" method="POST">
+                <div class="search">
+                    <input type="text" class="searchTerm" name="keyword" placeholder="What are you looking for?">
+                    <button type="submit" class="searchButton" name="search" value="search">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        {% if keyword %}
+            <h2>Search Results for "{{ keyword }}"</h2>
+            <ul>
+            {% if results %}
+                {% for post in results %}
+                    <div class="blog-container">
+                        <div class="blog-header">
+                            <div class="blog-author--no-cover">
+                                <h3>{{post.author}}</h3>
+                            </div>
+                        </div>
+
+                        <div class="blog-body">
+                            <div class="blog-title">
+                            <h4>{{post.title}}</h4>
+                            </div>
+                            <div class="blog-summary">
+                            <p>{{post.content}}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="blog-footer">
+                            <ul>
+                            <li class="published-date">{{post.date}}</li>
+                            </ul>
+                        </div>
+                        </div>
+                {% endfor %}
+                {% else %}
+                <li>No results found.</li>
+            </ul>
+            {% endif %}
+        {% endif %}
+        
+
+
+        <!-- Container issue-->
+        <div class="container">
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                        <strong>What is ChessMate?</strong>
+                    </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                        <div class="accordion-body">
+                            <strong>ChessMate</strong> is a website built by a group of students from the University of Information Technology - Viet Nam <i class="fib fib-vn" ></i>. The website is designed to help users improve their chess skills and knowledge. Users can play chess online, read articles about chess, and buy chess-related products from the shop. The website also has a blog where users can post questions and get answers from the community. Currently, the website is under development since it is just a class project. However, any supports and feedbacks from users are highly appreciated and the team might consider further development in the future.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                        <strong>Is it free to play?</strong>
+                    </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <strong>This website is free for playing!</strong> We aim to provide a platform for chess enthusiasts to play and improve their skills without any cost. However, for those who want more in-game features or just to support us, we also have a shop where users can buy chess-related products.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                        <strong>Is this website completed?</strong>
+                    </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <strong>Not yet.</strong> The group still has a lot of ideas to implement and features to add to the website. If you have any suggestions or feedback, feel free to contact us, we are always open to new ideas and improvements <i class="fa-light fa-face-smile"></i>.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                        <strong>Want to support us?</strong>
+                    </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <strong>Bravo!</strong> 
+                            <br>
+                            Not many would think of supporting a class project, but you did! You can support us by donating via the link below. Thank you for your support <i class="fa-light fa-heart"></i>.
+                            <br>
+                            <a class="btn btn-primary" href="https://paypal.me/harrylee02" role="button">Link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+    
+{% endblock %}
+
+{% block script %}
+    {{ parent()}}
+    document.addEventListener('DOMContentLoaded', function () {
+        const hamburgerIcon = document.querySelector('.hamburger');
+        const navLink = document.querySelector('.nav-link');
+        const navItems = document.querySelectorAll('.nav-link li a');
+        const loginBtn = document.querySelector('.login-btn');
+
+        hamburgerIcon.addEventListener('click', function () {
+            navLink.classList.toggle('show');
+            if (navLink.classList.contains('show')) {
+                navItems.forEach(item => item.style.display = 'block');
+                loginBtn.style.display = 'block';
+            } else {
+                navItems.forEach(item => item.style.display = 'none');
+                loginBtn.style.display = 'none';
+            }
+        });
+
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 400) {
+                navItems.forEach(item => item.style.display = 'block');
+                loginBtn.style.display = 'block';
+            } else {
+                navItems.forEach(item => item.style.display = 'none');
+                loginBtn.style.display = 'none';
+            }
+        });
+    });
+{% endblock %}

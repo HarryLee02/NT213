@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif&family=Irish+Grover&display=swap');
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inria Serif',sans-serif;
+}
+@keyframes revealBody
+{
+    0% { opacity: 0; } 
+    100% {opacity: 1;}
+}
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
+::-webkit-scrollbar {
+    width: 10px;
+}
+    /* Track */
+::-webkit-scrollbar-track {
+    background: linear-gradient(0deg, rgba(168,237,234,1) 0%, rgba(254,214,227,1) 100%);
+}
+    /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+    /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+.nav-custom
+{
+    background-color: #1451B8;
+}
+.container-fluid .navbar-brand, .container-fluid .nav-link {
+    color: rgb(255, 255, 255);
+}
+.container-fluid .nav-link.active,
+.container-fluid .navbar-brand:hover,
+.container-fluid .navbar-toggler-icon,
+.container-fluid .nav-link.focus,
+.container-fluid .nav-link:hover {
+    color: rgb(164, 72, 203);
+}
+.logo
+{
+    padding-bottom: 1vh;
+    height: 5rem;
+    width:  5rem;
+}
+html, body
+{
+    min-width: 260px;
+}
+.container
+{   
+    margin-top: 60px;
+    max-width: 700px;
+    width: 100%;
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+h1{
+    font-family: 'Irish Grover', sans-serif;
+    font-size:40px;
+    font-weight: 500;
+    position: relative;
+    text-align: center;
+}
+.title::before
+{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom: 0;
+    height: 3px;
+    width: 640px;
+    border-radius: 5px;
+    background: linear-gradient(135deg,#71b7e6,#9b59b6);
+}
+.content form .user-details
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin:  20px 0 12px 0;
+}
+form .user-details .input-box
+{
+    margin-bottom:15px;
+    width: calc(100% / 2 - 20px);
+}
+form .input-box span.user-details
+{
+    display: block;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+.user-details .input-box input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left:15px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition:  all 0.3s ease;
+}
+.user-details .input-box input:focus,
+.user-details .input-box input:valid{
+    border-bottom:2px solid blue;
+}
+form .gender-details .gender-title
+{
+    font-size: 20px;
+    font-weight: 500;
+}
+form .category
+{
+    display: flex;
+    width: 80%;
+    margin:14px 0;
+    justify-content: space-between;
+}
+form .category label{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+form input[type="checkbox"]
+{
+    width: 18px;
+    height: 18px;
+}
+form .button
+{
+    height: 50%;
+    width: auto;
+    display: flex;
+    margin: 35px 0;
+    align-items: center;
+    justify-content: center;
+}
+form .button input{
+    font-family: system-ui, sans-serif;
+    font-size: 2.5rem;
+    padding: .1em .6em;
+    width: 50%;
+    height: auto;
+    font-weight: bold;  
+    border: none;
+    --c:  #229091; /* the color*/
+    
+    box-shadow: 0 0 0 .1em inset var(--c); 
+    --_g: linear-gradient(var(--c) 0 0) no-repeat;
+    background: 
+      var(--_g) calc(var(--_p,0%) - 100%) 0%,
+      var(--_g) calc(200% - var(--_p,0%)) 0%,
+      var(--_g) calc(var(--_p,0%) - 100%) 100%,
+      var(--_g) calc(200% - var(--_p,0%)) 100%;
+    background-size: 50.5% calc(var(--_p,0%)/2 + .5%);
+    outline-offset: .1em;
+    transition: background-size .4s, background-position 0s .4s;
+}
+form .button input:hover
+{
+    --_p: 100%;
+    transition: background-position .4s, background-size 0s;
+}
+@media(max-width: 584px)
+{
+    .container
+    {
+        max-width: 100%;
+    }
+    form .user-details .input-box
+    {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    form.category{
+        width: 100%;;
+    }
+    .content form .user-details{
+        max-height: 300px;
+        overflow-y: scroll;
+    }
+    .user-details::-webkit-scrollbar
+    {
+        width: 5px;
+    }
+}
+@media(max-width: 459px)
+{
+    .container.content.category
+    {
+        flex-direction: column;
+    }
+}
